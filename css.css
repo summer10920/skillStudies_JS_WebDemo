@@ -1,0 +1,61 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#thepear {
+  mix-blend-mode: soft-light;
+}
+
+.cls-4 {
+  clip-path: url(#clip-path);
+}
+
+.allpear {
+  fill: url(#svg_gold);
+  stroke: black;
+  stroke-width: 1;
+  animation: run_ani 60s infinite linear;
+}
+
+.cls-30 {
+  mix-blend-mode: lighten;
+}
+
+.allsteel {
+  fill: url(#steel);
+}
+
+.cls-33 {
+  fill: #e91061;
+}
+
+.cls-39 {
+  fill: #fff;
+}
+
+#thesec {
+  transform-origin: 960px 534.23px;
+  animation: j_sec 1s infinite linear;
+}
+
+#themin {
+  transform-origin: 960px 534.23px;
+  animation: j_min 60s infinite linear;
+}
+
+#thehour {
+  transform-origin: 960px 534.23px;
+  animation: j_hour 720s infinite linear;
+}
+
+@keyframes run_ani {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
