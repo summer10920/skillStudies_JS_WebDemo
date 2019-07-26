@@ -16,7 +16,7 @@ body {
   fill: url(#svg_gold);
   stroke: black;
   stroke-width: 1;
-  animation: run_ani 60s infinite linear;
+  animation: run_ani 40s infinite linear;
 }
 
 .cls-30 {
