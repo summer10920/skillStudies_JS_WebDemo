@@ -37,17 +37,17 @@ body {
 
 #thesec {
   transform-origin: 960px 534.23px;
-  animation: j_sec 1s infinite linear;
+  animation: j_sec 60s infinite linear;
 }
 
 #themin {
   transform-origin: 960px 534.23px;
-  animation: j_min 60s infinite linear;
+  animation: j_min 3600s infinite linear;
 }
 
 #thehour {
   transform-origin: 960px 534.23px;
-  animation: j_hour 720s infinite linear;
+  animation: j_hour 43200s infinite linear;
 }
 
 @keyframes run_ani {
