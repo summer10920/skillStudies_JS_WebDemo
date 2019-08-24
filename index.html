@@ -7,11 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Animation Analog Clock - Loki's JSROOM</title>
   <link rel="stylesheet" href="css.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H4SNW09H9P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-H4SNW09H9P');
+  </script>
   <script>
     var time = new Date();
     var pos_s = time.getSeconds() * 6;
     var pos_m = time.getMinutes() * 6;
-    var pos_h = (time.getHours()*60 + time.getMinutes()) * 0.5;
+    var pos_h = (time.getHours() * 60 + time.getMinutes()) * 0.5;
     document.write(`
       <style>
         @keyframes j_sec {
@@ -222,12 +231,12 @@
     <circle class="cls-33" cx="960" cy="534.23" r="5.77"></circle>
   </svg>
   <script>
-    var rpos=document.getElementsByClassName('allpear');
-    for(let i=0;i<rpos.length;i++){
-      let x=Math.floor(Math.random()*50)/10+45;
-      let y=Math.floor(Math.random()*50)/10+45;
-      let spd = Math.floor(Math.random() * 30)+10;
-      rpos[i].style=`transform-origin: ${x}% ${y}%;animation:${spd}s infinite linear run_ani;`;
+    var rpos = document.getElementsByClassName('allpear');
+    for (let i = 0; i < rpos.length; i++) {
+      let x = Math.floor(Math.random() * 50) / 10 + 45;
+      let y = Math.floor(Math.random() * 50) / 10 + 45;
+      let spd = Math.floor(Math.random() * 30) + 10;
+      rpos[i].style = `transform-origin: ${x}% ${y}%;animation:${spd}s infinite linear run_ani;`;
     }
   </script>
 </body>
