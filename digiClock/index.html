@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Digital Clock - Loki's JSROOM</title>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: black;
+      margin: 0;
+    }
+
+    #clock1 {
+      width: 740px;
+      height: 100px;
+      background-color: #43434342;
+      margin: 20vh auto;
+      padding: 10px;
+      display: flex;
+    }
+
+    .clock {
+      width: 200px;
+      height: 100px;
+      background-color: #232323;
+      display: inline-flex;
+    }
+
+    .cc {
+      width: 50px;
+      height: 100px;
+      margin: 0 10px;
+      background: url(num.jpg);
+      background-position: 50px;
+    }
+
+    .c1,
+    .c2,
+    .c3,
+    .c4,
+    .c5,
+    .c6,
+    .c7,
+    .c8,
+    .c9,
+    .c0 {
+      width: 100px;
+      height: 100px;
+      background: url(num.jpg);
+    }
+
+    .c1 {
+      background-position: -100px;
+    }
+
+    .c2 {
+      background-position: -200px;
+    }
+
+    .c3 {
+      background-position: -300px;
+    }
+
+    .c4 {
+      background-position: -400px;
+    }
+
+    .c5 {
+      background-position: -500px;
+    }
+
+    .c6 {
+      background-position: -600px;
+    }
+
+    .c7 {
+      background-position: -700px;
+    }
+
+    .c8 {
+      background-position: -800px;
+    }
+
+    .c9 {
+      background-position: -900px;
+    }
+
+    .c0 {
+      background-position: 0px;
+    }
+
+    #clock2 {
+      width: 600px;
+      height: 300px;
+      margin: 20vh auto;
+      letter-spacing: 0.05em;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      display: table;
+      animation: light 30s linear infinite;
+    }
+
+    @keyframes light {
+      from {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(0, 100%, 15%, 1), 0 0 200px hsla(0, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(0, 100%, 60%, 1), 0 0 40px hsla(0, 100%, 30%, 1);
+        color: hsla(0, 100%, 95%, 1);
+      }
+
+      10% {
+        /*thin*/
+        box-shadow: inset 0 0 20px hsla(36, 100%, 15%, 1), 0 0 40px hsla(36, 100%, 0%, 1);
+        text-shadow: 0 0 10px hsla(36, 100%, 60%, 1), 0 0 40px hsla(36, 100%, 30%, 1);
+        color: hsla(36, 100%, 95%, 1);
+      }
+
+      20% {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(72, 100%, 15%, 1), 0 0 200px hsla(72, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(72, 100%, 60%, 1), 0 0 40px hsla(72, 100%, 30%, 1);
+        color: hsla(72, 100%, 95%, 1);
+      }
+
+      30% {
+        /*thin*/
+        box-shadow: inset 0 0 20px hsla(108, 100%, 15%, 1), 0 0 40px hsla(108, 100%, 0%, 1);
+        text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 40px hsla(108, 100%, 30%, 1);
+        color: hsla(108, 100%, 95%, 1);
+      }
+
+      40% {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(144, 100%, 15%, 1), 0 0 200px hsla(144, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(144, 100%, 60%, 1), 0 0 40px hsla(144, 100%, 30%, 1);
+        color: hsla(144, 100%, 95%, 1);
+      }
+
+      50% {
+        /*thin*/
+        box-shadow: inset 0 0 20px hsla(180, 100%, 15%, 1), 0 0 40px hsla(180, 100%, 0%, 1);
+        text-shadow: 0 0 10px hsla(180, 100%, 60%, 1), 0 0 40px hsla(180, 100%, 30%, 1);
+        color: hsla(180, 100%, 95%, 1);
+      }
+
+      60% {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(216, 100%, 15%, 1), 0 0 200px hsla(216, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(216, 100%, 60%, 1), 0 0 40px hsla(216, 100%, 30%, 1);
+        color: hsla(216, 100%, 95%, 1);
+      }
+
+      70% {
+        /*thin*/
+        box-shadow: inset 0 0 20px hsla(252, 100%, 15%, 1), 0 0 40px hsla(252, 100%, 0%, 1);
+        text-shadow: 0 0 10px hsla(252, 100%, 60%, 1), 0 0 40px hsla(252, 100%, 30%, 1);
+        color: hsla(252, 100%, 95%, 1);
+      }
+
+      80% {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(288, 100%, 15%, 1), 0 0 200px hsla(288, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(288, 100%, 60%, 1), 0 0 40px hsla(288, 100%, 30%, 1);
+        color: hsla(288, 100%, 95%, 1);
+      }
+
+      90% {
+        /*thin*/
+        box-shadow: inset 0 0 20px hsla(324, 100%, 15%, 1), 0 0 40px hsla(324, 100%, 0%, 1);
+        text-shadow: 0 0 10px hsla(324, 100%, 60%, 1), 0 0 40px hsla(324, 100%, 30%, 1);
+        color: hsla(324, 100%, 95%, 1);
+      }
+
+      to {
+        /*fat*/
+        box-shadow: inset 0 0 300px hsla(360, 100%, 15%, 1), 0 0 200px hsla(360, 100%, 0%, 1);
+        text-shadow: 0 0 200px hsla(360, 100%, 60%, 1), 0 0 40px hsla(360, 100%, 30%, 1);
+        color: hsla(360, 100%, 95%, 1);
+      }
+
+    }
+
+    .v-center {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    #clk2-date {
+      font-size: 30px;
+    }
+
+    #clk2-time {
+      font-size: 80px;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clock1">
+    <span class="clock">
+      <span id="c1"></span>
+      <span id="c2"></span>
+    </span>
+    <span class="cc"></span>
+    <span class="clock">
+      <span id="c3"></span>
+      <span id="c4"></span>
+    </span>
+    <span class="cc"></span>
+    <span class="clock">
+      <span id="c5"></span>
+      <span id="c6"></span>
+    </span>
+  </div>
+
+  <div id="clock2">
+    <div class="v-center">
+      <p id="clk2-time">12:55:58</p>
+      <p id="clk2-date">2019-07-26 FRI</p>
+    </div>
+  </div>
+
+  <script>
+    var n_day = ['SUN', 'MON', 'TUS', 'WED', 'THR', 'FRI', 'SAT'];
+    function re_time() {
+      setTimeout("re_time()", 1000);
+      nt = new Date();
+      n_hour = nt.getHours(); //時
+      n_min = nt.getMinutes();//分
+      n_sec = nt.getSeconds();//秒65
+
+      n_year = nt.getFullYear();//年
+      n_moth = nt.getMonth();
+      n_date = nt.getDate();
+      d_item = nt.getDay();
+
+      function chk0(num) {
+        return (num < 10) ? "0" + num : num;
+      }
+      /*for clock1 start*/
+      //單值之個位數
+      n_hx = n_hour % 10;
+      n_mx = n_min % 10;
+      n_sx = n_sec % 10;
+      //單值之十位數
+      n_ht = Math.floor(n_hour / 10);
+      n_mt = Math.floor(n_min / 10);
+      n_st = Math.floor(n_sec / 10);
+
+      document.getElementById("c1").className = "c" + n_ht;
+      document.getElementById("c2").className = "c" + n_hx;
+      document.getElementById("c3").className = "c" + n_mt;
+      document.getElementById("c4").className = "c" + n_mx;
+      document.getElementById("c5").className = "c" + n_st;
+      document.getElementById("c6").className = "c" + n_sx;
+
+      document.getElementsByClassName("cc")[0].style.opacity = 0;
+      document.getElementsByClassName("cc")[1].style.opacity = 0;
+      setTimeout(function () {
+        document.getElementsByClassName("cc")[0].style.opacity = 1;
+        document.getElementsByClassName("cc")[1].style.opacity = 1;
+      }, 500);
+      /*for clock1 end*/
+
+      /*for clock2 start*/
+      document.getElementById("clk2-time").textContent = `${chk0(n_hour)}:${chk0(n_min)}:${chk0(n_sec)}`;
+      document.getElementById("clk2-date").textContent = `${n_year}-${n_moth + 1}-${n_date} ${n_day[d_item]}`;
+      /*for clock2 end*/
+    }
+    re_time();
+  </script>
+</body>
+
+</html>

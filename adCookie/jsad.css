@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#adFull {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(149, 230, 208, 0.5);
+  position: fixed;
+  text-align: center;
+  z-index: 9999;
+}
+
+#adImage {
+  margin: 33vh auto 0 auto;
+  cursor: pointer;
+  height: 33vh;
+}
+
+#adClose {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-left: 24vw;
+  margin-top: -15vh;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 14px;
+  background: #eee;
+  border-radius: 1em;
+}
+
+#adClose:hover {
+  background: #ccc;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div#zone {
+      width: 500px;
+      height: 300px;
+      border: pink 1px solid;
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 40px;
+      line-height: 300px;
+      text-transform: uppercase;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="zone"></div>
+  <div>
+      <input type="button" value="R" onclick="ask('r')">
+      <input type="range" min="0" max="255" id="rr" oninput="sbar('r',this)">
+    <br>
+      <input type="button" value="G" onclick="ask('g')">
+      <input type="range" min="0" max="255" id="gg" oninput="sbar('g',this)">
+    <br>
+      <input type="button" value="B" onclick="ask('b')">
+      <input type="range" min="0" max="255" id="bb" oninput="sbar('b',this)">
+    <br><br>
+      <input type="button" value="+" onmousedown="cont('add')" onmouseup="clearInterval(run)" onmouseout="clearInterval(run)">
+      <input type="button" value="-" onmousedown="cont('sub')" onmouseup="clearInterval(run)" onmouseout="clearInterval(run)">
+      <input type="button" value="?" onmousedown="cont('rand')" onmouseup="clearInterval(run)" onmouseout="clearInterval(run)">
+  </div>
+</body>
+
+</html>
+<script>
+  function padLeft(str) { //補位數
+    str = str.toString(16);
+    return str.length >= 2 ? str : '0' + str;
+  }
+  function print_rgb() { //print color
+    document.getElementById("zone").style.backgroundColor = "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+    document.getElementById("zone").style.color = "rgb(" + (255-rgb.r) + "," + (255-rgb.g) + "," + (255-rgb.b) + ")";
+    document.getElementById("rr").value = rgb.r;
+    document.getElementById("gg").value = rgb.g;
+    document.getElementById("bb").value = rgb.b;
+    document.getElementById("zone").innerHTML = "#" + padLeft(rgb.r) + padLeft(rgb.g) + padLeft(rgb.b);
+  }
+  function ask(clr) {    //詢問單色並替換
+    do {
+      newclr = prompt('輸入0~255', rgb[clr]);
+    } while (!(0 <= newclr && newclr <= 255));
+    rgb[clr] = (newclr == null) ? rgb[clr] : Number(newclr);
+    print_rgb();
+  }
+
+  var rgb = { r: 0, g: 0, b: 0 }, run; //初始化
+  rgb.r = Math.floor((Math.random() * 256));
+  rgb.g = Math.floor((Math.random() * 256));
+  rgb.b = Math.floor((Math.random() * 256));
+  print_rgb();
+
+
+  function cont(select) {   //連續作業
+    run = setInterval(function () {
+      switch (select) {
+        case 'add':
+          if (rgb.r < 255) rgb.r++;
+          if (rgb.g < 255) rgb.g++;
+          if (rgb.b < 255) rgb.b++;
+          break;
+        case 'sub':
+          if (rgb.r > 0) rgb.r--;
+          if (rgb.g > 0) rgb.g--;
+          if (rgb.b > 0) rgb.b--;
+          break;
+        case 'rand':
+          rgb.r = Math.floor((Math.random() * 256));
+          rgb.g = Math.floor((Math.random() * 256));
+          rgb.b = Math.floor((Math.random() * 256));
+          break;
+      }
+      print_rgb();
+    }, 30);
+  }
+  function sbar(clr, obj) {
+    rgb[clr] = Number(obj.value);
+    print_rgb();
+  }
+</script>
