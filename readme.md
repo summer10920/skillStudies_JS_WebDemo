@@ -1,13 +1,13 @@
 ## JS練習 - 選色器
-https://summer10920.github.io/skillStudies_JS_WebDemo/colorEditor/
+https://summer10920.github.io/studies_TeachDemo_JS/colorEditor/
 ## JS練習 - Cookie 廣告
-https://summer10920.github.io/skillStudies_JS_WebDemo/adCookie/
+https://summer10920.github.io/studies_TeachDemo_JS/adCookie/
 ## JS練習 - 故事選擇遊戲
-https://summer10920.github.io/skillStudies_JS_WebDemo/storyGame/
-https://summer10920.github.io/skillStudies_JS_WebDemo/storyGame_swal/
+https://summer10920.github.io/studies_TeachDemo_JS/storyGame/
+https://summer10920.github.io/studies_TeachDemo_JS/storyGame_swal/
 ## JS練習 - 數位鐘
-https://summer10920.github.io/skillStudies_JS_WebDemo/digiClock/
+https://summer10920.github.io/studies_TeachDemo_JS/digiClock/
 ## JS練習 - 類比鐘
-https://summer10920.github.io/skillStudies_JS_WebDemo/analogClock/
+https://summer10920.github.io/studies_TeachDemo_JS/analogClock/
 ## JS練習 - 打地鼠
-https://summer10920.github.io/skillStudies_JS_WebDemo/whackMole/
+https://summer10920.github.io/studies_TeachDemo_JS/whackMole/
