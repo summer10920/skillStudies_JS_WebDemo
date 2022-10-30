@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .calendar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 640px;
+      border: 1px solid #38470B;
+      box-shadow: 0px 2px 6px #0000000A;
+      text-align: center;
+      font-size: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .calendar ul,
+    .calendar li {
+      list-style: none;
+      padding: 0;
+    }
+
+    .calendar .leftCal,
+    .calendar .rightCal {
+      flex: 0 1 300px;
+    }
+
+    .calendar .leftBar,
+    .calendar .rightBar {
+      border-bottom: 1px solid rgba(56, 71, 11, 0.1);
+    }
+
+    .calendar .leftBar ul,
+    .calendar .rightBar ul {
+      display: flex;
+      margin: 25px 0 10px;
+      color: rgba(56, 71, 11, 0.5);
+    }
+
+    .calendar .leftBar ul li,
+    .calendar .rightBar ul li {
+      flex: 0 1 calc(100% / 7);
+    }
+
+    .calendar .ctrlBtn {
+      position: absolute;
+      top: 17px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .calendar .leftDayList,
+    .calendar .rightDayList {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .calendar .leftDayList li,
+    .calendar .rightDayList li {
+      flex: 0 1 calc(100% / 7);
+      margin-bottom: 6px;
+      line-height: 30px;
+      font-family: 'Open Sans', sans-serif;
+      position: relative;
+    }
+
+    .calendar .leftDayList .emptyDay,
+    .calendar .rightDayList .emptyDay {
+      cursor: pointer;
+    }
+
+    .calendar .leftDayList .emptyDay:hover,
+    .calendar .rightDayList .emptyDay:hover,
+    .calendar #selectHead,
+    .calendar #selectFoot {
+      color: white;
+    }
+
+    .calendar .leftDayList .emptyDay:hover::before,
+    .calendar .rightDayList .emptyDay:hover::before,
+    .calendar #selectHead::before,
+    .calendar #selectFoot::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: 0 auto;
+      z-index: -1;
+      left: 0;
+      right: 0;
+    }
+
+    .calendar .leftDayList .emptyDay:hover::before,
+    .calendar .rightDayList .emptyDay:hover::before {
+      background: #949C7C;
+    }
+
+    .calendar #selectHead::before,
+    .calendar #selectFoot::before {
+      background: #38470B;
+    }
+
+    .calendar #selectHead {
+      background: linear-gradient(to right, transparent 50%, rgba(56, 71, 11, 0.2) 50%);
+    }
+
+    .calendar .selectConnect {
+      background: rgba(56, 71, 11, 0.2);
+    }
+
+    .calendar #selectFoot {
+      background: linear-gradient(to right, rgba(56, 71, 11, 0.2) 50%, transparent 50%);
+    }
+
+    .calendar .delDay {
+      text-decoration: line-through;
+      color: rgba(56, 71, 11, 0.3);
+    }
+
+    .calendar .fullDay {
+      color: rgba(56, 71, 11, 0.3);
+      background: rgba(240, 72, 30, 0.3);
+      /* cursor: default; */
+    }
+
+    .calendar .holiday {
+      color: rgb(252, 90, 90);
+      /* font-weight: bold; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calendar">
+    <div class="ctrlBtn">
+      <a
+        class="lastBtn"
+        href="#"
+      ><img
+          src="https://upload.cc/i1/2020/05/28/et9aHB.png"
+          alt=""
+        /></a>
+      <a
+        class="nextBtn"
+        href="#"
+      ><img
+          src="https://upload.cc/i1/2020/05/28/83Hupb.png"
+          alt=""
+        /></a>
+    </div>
+    <div class="leftCal">
+      <div class="leftBar">
+        <h4>October 2022</h4>
+        <ul>
+          <li>Mo</li>
+          <li>Tu</li>
+          <li>We</li>
+          <li>Th</li>
+          <li>Fr</li>
+          <li>Sa</li>
+          <li>Su</li>
+        </ul>
+      </div>
+      <ul class="leftDayList">
+        <li class="JsCal"></li>
+        <li class="JsCal"></li>
+        <li class="JsCal"></li>
+        <li class="JsCal"></li>
+        <li class="JsCal"></li>
+        <li class="delDay JsCal">1</li>
+        <li class="delDay JsCal">2</li>
+        <li class="delDay JsCal">3</li>
+        <li class="delDay JsCal">4</li>
+        <li class="delDay JsCal">5</li>
+        <li class="emptyDay JsCal">6</li>
+        <li class="emptyDay JsCal">7</li>
+        <li class="emptyDay JsCal holiday">8</li>
+        <li class="emptyDay JsCal holiday">9</li>
+        <li class="emptyDay JsCal holiday">10</li>
+        <li class="emptyDay JsCal">11</li>
+        <li class="emptyDay JsCal">12</li>
+        <li class="emptyDay JsCal">13</li>
+        <li class="emptyDay JsCal">14</li>
+        <li class="emptyDay JsCal holiday">15</li>
+        <li class="emptyDay JsCal holiday">16</li>
+        <li class="emptyDay JsCal">17</li>
+        <li class="emptyDay JsCal">18</li>
+        <li class="emptyDay JsCal">19</li>
+        <li class="emptyDay JsCal">20</li>
+        <li class="emptyDay JsCal">21</li>
+        <li class="emptyDay JsCal holiday">22</li>
+        <li class="emptyDay JsCal holiday">23</li>
+        <li class="emptyDay JsCal">24</li>
+        <li class="emptyDay JsCal">25</li>
+        <li class="emptyDay JsCal">26</li>
+        <li class="emptyDay JsCal">27</li>
+        <li class="emptyDay JsCal">28</li>
+        <li class="emptyDay JsCal holiday">29</li>
+        <li class="emptyDay JsCal holiday">30</li>
+        <li class="emptyDay JsCal">31</li>
+      </ul>
+    </div>
+    <div class="rightCal">
+      <div class="rightBar">
+        <h4>November 2022</h4>
+        <ul>
+          <li>Mo</li>
+          <li>Tu</li>
+          <li>We</li>
+          <li>Th</li>
+          <li>Fr</li>
+          <li>Sa</li>
+          <li>Su</li>
+        </ul>
+      </div>
+      <ul class="rightDayList">
+        <li class="JsCal"></li>
+        <li class="emptyDay JsCal">1</li>
+        <li class="emptyDay JsCal">2</li>
+        <li class="emptyDay JsCal">3</li>
+        <li class="emptyDay JsCal">4</li>
+        <li class="fullDay JsCal holiday">5</li>
+        <li class="fullDay JsCal holiday">6</li>
+        <li class="emptyDay JsCal">7</li>
+        <li class="emptyDay JsCal">8</li>
+        <li class="emptyDay JsCal">9</li>
+        <li class="emptyDay JsCal">10</li>
+        <li class="emptyDay JsCal">11</li>
+        <li class="emptyDay JsCal holiday">12</li>
+        <li class="emptyDay JsCal holiday">13</li>
+        <li class="emptyDay JsCal">14</li>
+        <li class="emptyDay JsCal">15</li>
+        <li
+          class="emptyDay JsCal"
+          id="selectHead"
+        >16</li>
+        <li class="emptyDay JsCal selectConnect">17</li>
+        <li class="emptyDay JsCal selectConnect">18</li>
+        <li class="fullDay JsCal holiday selectConnect">19</li>
+        <li
+          class="emptyDay JsCal holiday"
+          id="selectFoot"
+        >20</li>
+        <li class="emptyDay JsCal">21</li>
+        <li class="emptyDay JsCal">22</li>
+        <li class="emptyDay JsCal">23</li>
+        <li class="emptyDay JsCal">24</li>
+        <li class="emptyDay JsCal">25</li>
+        <li class="emptyDay JsCal holiday">26</li>
+        <li class="emptyDay JsCal holiday">27</li>
+        <li class="emptyDay JsCal">28</li>
+        <li class="emptyDay JsCal">29</li>
+        <li class="emptyDay JsCal">30</li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
