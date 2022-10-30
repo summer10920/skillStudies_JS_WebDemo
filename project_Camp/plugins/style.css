@@ -23,6 +23,7 @@ body > nav {
 
 #lokiMenu a.nav-link.active {
   transform: scale(1.2);
+  transform-origin: left;
 }
 
 #lokiSlider .carousel-item {
@@ -85,9 +86,7 @@ body > nav {
   #lokiPallet .card:hover .card-img-overlay {
     transform: scale(1);
   }
-}
 
-@media screen and (min-width: 768px) {
   #lokiPallet .card-img {
     transition: 0.3s;
   }
@@ -118,7 +117,7 @@ body > nav {
   opacity: 1 !important;
 }
 
-section:not(#lokiSlider) {
+section:not(#lokiSlider,#lokiLightBox) {
   padding-bottom: 120px;
 }
 
@@ -134,25 +133,38 @@ section:not(#lokiSlider) {
   object-fit: cover;
 }
 
-#lokiContact {
+#lokiReserve {
   background: url("../media/imgs/contactBG.jpg") #000 no-repeat center/cover;
   background-attachment: fixed;
   background-blend-mode: luminosity;
 }
 
-#lokiContact #ff-compose {
-  padding-top: 120px;
-}
-
-#lokiContact .ff-form {
+#lokiReserve .card {
   backdrop-filter: blur(10px);
-  background: rgb(255, 193, 7, 0.3);
+  /* background: rgb(255, 193, 7, 0.3); */
+  background: #fffd;
   border-radius: 5px;
 }
 
-#lokiContact #ff-title-root {
+/* #lokiReserve #ff-title-root {
   margin: 3rem 0;
   border-left: 5px solid white;
   font-size: 2rem;
   padding: 0 0 0 1rem;
+} */
+
+/* ******************************** */
+
+#lokiReserve img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+#lokiLightBox{
+  position: fixed;
+  background: hsla(0, 0%, 100%, 0.1);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
 }
