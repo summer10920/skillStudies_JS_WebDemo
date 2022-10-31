@@ -1,0 +1,96 @@
+{
+  "success": true,
+  "nationalHoliday": [
+    "2023-01-02",
+    "2023-01-20",
+    "2023-01-23",
+    "2023-01-24",
+    "2023-01-25",
+    "2023-01-26",
+    "2023-01-27",
+    "2023-02-27",
+    "2023-02-28",
+    "2023-04-03",
+    "2023-04-04",
+    "2023-04-05",
+    "2023-06-22",
+    "2023-06-23",
+    "2023-09-29",
+    "2023-10-09",
+    "2023-10-10",
+    "2024-01-01"
+  ],
+  "pallet": {
+    "palletA": {
+      "total": 10,
+      "nightPrice": 800,
+      "normalPrice": 1000,
+      "holidayPrice": 1500
+    },
+    "palletB": {
+      "total": 10,
+      "nightPrice": 900,
+      "normalPrice": 1100,
+      "holidayPrice": 1600
+    },
+    "palletC": {
+      "total": 10,
+      "nightPrice": 1000,
+      "normalPrice": 1200,
+      "holidayPrice": 1700
+    },
+    "palletD": {
+      "total": 10,
+      "nightPrice": 1500,
+      "normalPrice": 2000,
+      "holidayPrice": 2500
+    }
+  },
+  "booked": [
+    {
+      "date": "2022-12-12",
+      "sellout": {
+        "palletA": 10,
+        "palletB": 10,
+        "palletC": 10,
+        "palletD": 10
+      }
+    },
+    {
+      "date": "2022-12-13",
+      "sellout": {
+        "palletA": 10,
+        "palletB": 10,
+        "palletC": 10,
+        "palletD": 10
+      }
+    },
+    {
+      "date": "2022-12-14",
+      "sellout": {
+        "palletA": 10,
+        "palletB": 10,
+        "palletC": 10,
+        "palletD": 10
+      }
+    },
+    {
+      "date": "2022-12-15",
+      "sellout": {
+        "palletA": 10,
+        "palletB": 10,
+        "palletC": 10,
+        "palletD": 10
+      }
+    },
+    {
+      "date": "2022-12-16",
+      "sellout": {
+        "palletA": 10,
+        "palletB": 10,
+        "palletC": 10,
+        "palletD": 10
+      }
+    }
+  ]
+}

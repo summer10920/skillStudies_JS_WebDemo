@@ -23,6 +23,7 @@ body > nav {
 
 #lokiMenu a.nav-link.active {
   transform: scale(1.2);
+  transform-origin: left;
 }
 
 #lokiSlider .carousel-item {
@@ -116,7 +117,7 @@ body > nav {
   opacity: 1 !important;
 }
 
-section:not(#lokiSlider) {
+section:not(#lokiSlider,#lokiLightBox) {
   padding-bottom: 120px;
 }
 
@@ -154,9 +155,16 @@ section:not(#lokiSlider) {
 
 /* ******************************** */
 
-/* ************************* */
 #lokiReserve img {
   width: 80px;
   height: 80px;
   object-fit: cover;
+}
+
+#lokiLightBox{
+  position: fixed;
+  background: hsla(0, 0%, 100%, 0.1);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
 }
