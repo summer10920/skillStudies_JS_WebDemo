@@ -36,10 +36,10 @@ let showLeftCalendar = () => {
     obj.listBoxR += `<li class="JsCal"></li>`;
   }
   for (let i = 1; i <= obj.totalDayL; i++) {
-    obj.listBoxL += `<li class="JsCal">${i}</li>`;
+    obj.listBoxL += `<li class="emptyDay JsCal">${i}</li>`;
   }
   for (let i = 1; i <= obj.totalDayR; i++) {
-    obj.listBoxR += `<li class="JsCal">${i}</li>`;
+    obj.listBoxR += `<li class="emptyDay JsCal">${i}</li>`;
   }
   document.querySelector('.leftDayList').innerHTML = obj.listBoxL;
   document.querySelector('.rightDayList').innerHTML = obj.listBoxR;
