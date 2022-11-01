@@ -9,7 +9,7 @@ dayjs.extend(window.dayjs_plugin_localeData);
 
 
 let init = () => {
-
+  showCalendar();
 
 
 
@@ -18,31 +18,36 @@ let init = () => {
   // })
 };
 
-let showLeftCalendar = () => {
-  let obj = {
-    listBoxL: '',
-    listBoxR: '',
-    titleL: '',
-    titleR: '',
-    firstDayL: dayjs().day(),
-    firstDayR: dayjs().add(1, 'month').day(),
-    totalDayL: dayjs().daysInMonth(),
-    totalDayR: dayjs().add(1, 'month').daysInMonth()
-  }
-  for (let i = 0; i < obj.firstDayL; i++) {
-    obj.listBoxL += `<li class="JsCal"></li>`;
-  }
-  for (let i = 0; i < obj.firstDayR; i++) {
-    obj.listBoxR += `<li class="JsCal"></li>`;
-  }
-  for (let i = 1; i <= obj.totalDayL; i++) {
-    obj.listBoxL += `<li class="emptyDay JsCal">${i}</li>`;
-  }
-  for (let i = 1; i <= obj.totalDayR; i++) {
-    obj.listBoxR += `<li class="emptyDay JsCal">${i}</li>`;
-  }
-  document.querySelector('.leftDayList').innerHTML = obj.listBoxL;
-  document.querySelector('.rightDayList').innerHTML = obj.listBoxR;
+const showCalendar = () => {
+  const
+    today = dayjs(),
+    objL = {
+      listBox: '',
+      title: '',
+      firstDay: today.day(),
+      totalDay: today.daysInMonth(),
+    },
+    objR = {
+      listBox: '',
+      title: '',
+      firstDay: today.add(1, 'month').day(),
+      totalDay: today.add(1, 'month').daysInMonth()
+    },
+    listMaker = (obj) => {
+      for (let i = 1; i < obj.firstDay; i++) {
+        obj.listBox += `<li class="JsCal"></li>`;
+      }
+      for (let i = 1; i <= obj.totalDay; i++) {
+        obj.listBox += `
+        <li 
+          class="emptyDay JsCal${(i + obj.firstDay) % 7 < 2 ? ' holiday' : ''}"
+        >${i}</li>`;
+      }
+      return obj;
+    };
+
+  document.querySelector('.leftDayList').innerHTML = listMaker(objL).listBox;
+  document.querySelector('.rightDayList').innerHTML = listMaker(objR).listBox;
 }
 
 init();
