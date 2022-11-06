@@ -38,7 +38,7 @@
     href="plugins/bootstrap.min.css"
   >
   <script src="plugins/bootstrap.bundle.min.js"></script>
-  <!-- fontawsome -->
+  <!-- fontAwesome -->
   <script
     src="https://kit.fontawesome.com/fa483230ea.js"
     crossorigin="anonymous"
@@ -49,6 +49,7 @@
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/localeData.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/isSameOrBefore.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/isBetween.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/zh-tw.js"></script>
   <!-- custom -->
   <link
@@ -639,17 +640,19 @@
             <div class="calendar pt-3 bg-light">
               <div class="ctrlBtn">
                 <a
-                  href="##"
-                  class="link-dark fs-4"
+                  href="#prevCtrl"
+                  class=" link-dark fs-4"
                 ><i class="fa-solid fa-circle-chevron-left"></i></a>
                 <a
-                  href="##"
-                  class="link-dark fs-4"
+                  href="#nextCtrl"
+                  class=" link-dark fs-4"
                 ><i class="fa-solid fa-circle-chevron-right"></i></a>
               </div>
               <div class="leftCal">
                 <div class="leftBar">
-                  <h4>October 2022</h4>
+                  <h4>
+                    <!-- October 2022 -->
+                  </h4>
                   <ul>
                     <li>Mo</li>
                     <li>Tu</li>
@@ -661,7 +664,7 @@
                   </ul>
                 </div>
                 <ul class="leftDayList">
-                  <li class="JsCal"></li>
+                  <!-- <li class="JsCal"></li>
                   <li class="JsCal"></li>
                   <li class="JsCal"></li>
                   <li class="JsCal"></li>
@@ -696,12 +699,14 @@
                   <li class="emptyDay JsCal">28</li>
                   <li class="emptyDay JsCal holiday">29</li>
                   <li class="emptyDay JsCal holiday">30</li>
-                  <li class="emptyDay JsCal">31</li>
+                  <li class="emptyDay JsCal">31</li> -->
                 </ul>
               </div>
               <div class="rightCal">
                 <div class="rightBar">
-                  <h4>November 2022</h4>
+                  <h4>
+                    <!-- November 2022 -->
+                  </h4>
                   <ul>
                     <li>Mo</li>
                     <li>Tu</li>
@@ -713,7 +718,7 @@
                   </ul>
                 </div>
                 <ul class="rightDayList">
-                  <li class="JsCal"></li>
+                  <!-- <li class="JsCal"></li>
                   <li class="emptyDay JsCal">1</li>
                   <li class="emptyDay JsCal">2</li>
                   <li class="emptyDay JsCal">3</li>
@@ -730,15 +735,13 @@
                   <li class="emptyDay JsCal">14</li>
                   <li class="emptyDay JsCal">15</li>
                   <li
-                    class="emptyDay JsCal"
-                    id="selectHead"
+                    class="emptyDay JsCal selectHead"
                   >16</li>
                   <li class="emptyDay JsCal selectConnect">17</li>
                   <li class="emptyDay JsCal selectConnect">18</li>
                   <li class="fullDay JsCal holiday selectConnect">19</li>
                   <li
-                    class="emptyDay JsCal holiday"
-                    id="selectFoot"
+                    class="emptyDay JsCal holiday selectFoot"
                   >20</li>
                   <li class="emptyDay JsCal">21</li>
                   <li class="emptyDay JsCal">22</li>
@@ -749,7 +752,7 @@
                   <li class="emptyDay JsCal holiday">27</li>
                   <li class="emptyDay JsCal">28</li>
                   <li class="emptyDay JsCal">29</li>
-                  <li class="emptyDay JsCal">30</li>
+                  <li class="emptyDay JsCal">30</li> -->
                 </ul>
               </div>
             </div>
@@ -792,7 +795,7 @@
                     <div>2022-11-04 ($1000)</div>
                   </td>
                   <td>
-                    <select class="form-select form-select-sm">
+                    <select class="form-select form-select-sm" name="aArea">
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -813,7 +816,7 @@
                     <div>2022-11-06 ($1000)</div>
                   </td>
                   <td>
-                    <select class="form-select form-select-sm">
+                    <select class="form-select form-select-sm" name="bArea">
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -834,7 +837,7 @@
                     <div>2022-11-06 ($1000)</div>
                   </td>
                   <td>
-                    <select class="form-select form-select-sm">
+                    <select class="form-select form-select-sm" name="cArea">
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -855,7 +858,7 @@
                     <div>2022-11-06 ($1000)</div>
                   </td>
                   <td>
-                    <select class="form-select form-select-sm">
+                    <select class="form-select form-select-sm" name="dArea">
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>

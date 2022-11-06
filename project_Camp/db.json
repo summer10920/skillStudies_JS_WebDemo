@@ -21,25 +21,26 @@
     "2024-01-01"
   ],
   "pallet": {
-    "palletA": {
+    "count": 40,
+    "aArea": {
       "total": 10,
       "nightPrice": 800,
       "normalPrice": 1000,
       "holidayPrice": 1500
     },
-    "palletB": {
+    "bArea": {
       "total": 10,
       "nightPrice": 900,
       "normalPrice": 1100,
       "holidayPrice": 1600
     },
-    "palletC": {
+    "cArea": {
       "total": 10,
       "nightPrice": 1000,
       "normalPrice": 1200,
       "holidayPrice": 1700
     },
-    "palletD": {
+    "dArea": {
       "total": 10,
       "nightPrice": 1500,
       "normalPrice": 2000,
@@ -50,46 +51,46 @@
     {
       "date": "2022-12-12",
       "sellout": {
-        "palletA": 10,
-        "palletB": 10,
-        "palletC": 10,
-        "palletD": 10
+        "aArea": 1,
+        "bArea": 1,
+        "cArea": 1,
+        "dArea": 1
       }
     },
     {
       "date": "2022-12-13",
       "sellout": {
-        "palletA": 10,
-        "palletB": 10,
-        "palletC": 10,
-        "palletD": 10
+        "aArea": 2,
+        "bArea": 2,
+        "cArea": 2,
+        "dArea": 2
       }
     },
     {
       "date": "2022-12-14",
       "sellout": {
-        "palletA": 10,
-        "palletB": 10,
-        "palletC": 10,
-        "palletD": 10
+        "aArea": 3,
+        "bArea": 3,
+        "cArea": 3,
+        "dArea": 3
       }
     },
     {
       "date": "2022-12-15",
       "sellout": {
-        "palletA": 10,
-        "palletB": 10,
-        "palletC": 10,
-        "palletD": 10
+        "aArea": 4,
+        "bArea": 4,
+        "cArea": 4,
+        "dArea": 4
       }
     },
     {
       "date": "2022-12-16",
       "sellout": {
-        "palletA": 10,
-        "palletB": 10,
-        "palletC": 10,
-        "palletD": 10
+        "aArea": 10,
+        "bArea": 10,
+        "cArea": 10,
+        "dArea": 10
       }
     }
   ]

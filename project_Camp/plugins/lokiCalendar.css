@@ -18,6 +18,42 @@
   padding: 0;
 }
 
+.calendar .delDay {
+  text-decoration: line-through;
+  color: rgba(56, 71, 11, 0.3);
+}
+
+.calendar .selectHead {
+  background: linear-gradient(
+    to right,
+    transparent 50%,
+    rgba(56, 71, 11, 0.2) 50%
+  );
+}
+
+.calendar .selectConnect {
+  background: rgba(56, 71, 11, 0.2);
+}
+
+.calendar .fullDay {
+  color: rgba(56, 71, 11, 0.3);
+  background: rgba(240, 72, 30, 0.3);
+  /* cursor: default; */
+}
+
+.calendar .holiday {
+  color: rgb(252, 90, 90);
+  /* font-weight: bold; */
+}
+
+.calendar .selectFoot {
+  background: linear-gradient(
+    to right,
+    rgba(56, 71, 11, 0.2) 50%,
+    transparent 50%
+  );
+}
+
 .calendar .leftCal,
 .calendar .rightCal {
   flex: 0 1 300px;
@@ -67,22 +103,22 @@
   z-index: 0;
 }
 
-.calendar .leftDayList .emptyDay,
-.calendar .rightDayList .emptyDay {
+.calendar .leftDayList .selectDay,
+.calendar .rightDayList .selectDay {
   cursor: pointer;
 }
 
-.calendar .leftDayList .emptyDay:hover,
-.calendar .rightDayList .emptyDay:hover,
-.calendar #selectHead,
-.calendar #selectFoot {
+.calendar .leftDayList .selectDay:hover,
+.calendar .rightDayList .selectDay:hover,
+.calendar .selectHead,
+.calendar .selectFoot {
   color: white;
 }
 
-.calendar .leftDayList .emptyDay:hover::before,
-.calendar .rightDayList .emptyDay:hover::before,
-.calendar #selectHead::before,
-.calendar #selectFoot::before {
+.calendar .leftDayList .selectDay:hover::before,
+.calendar .rightDayList .selectDay:hover::before,
+.calendar .selectHead::before,
+.calendar .selectFoot::before {
   content: "";
   position: absolute;
   width: 30px;
@@ -94,48 +130,12 @@
   right: 0;
 }
 
-.calendar .leftDayList .emptyDay:hover::before,
-.calendar .rightDayList .emptyDay:hover::before {
+.calendar .leftDayList .selectDay:hover::before,
+.calendar .rightDayList .selectDay:hover::before {
   background: #949c7c;
 }
 
-.calendar #selectHead::before,
-.calendar #selectFoot::before {
+.calendar .selectHead::before,
+.calendar .selectFoot::before {
   background: #38470b;
-}
-
-.calendar #selectHead {
-  background: linear-gradient(
-    to right,
-    transparent 50%,
-    rgba(56, 71, 11, 0.2) 50%
-  );
-}
-
-.calendar .selectConnect {
-  background: rgba(56, 71, 11, 0.2);
-}
-
-.calendar #selectFoot {
-  background: linear-gradient(
-    to right,
-    rgba(56, 71, 11, 0.2) 50%,
-    transparent 50%
-  );
-}
-
-.calendar .delDay {
-  text-decoration: line-through;
-  color: rgba(56, 71, 11, 0.3);
-}
-
-.calendar .fullDay {
-  color: rgba(56, 71, 11, 0.3);
-  background: rgba(240, 72, 30, 0.3);
-  /* cursor: default; */
-}
-
-.calendar .holiday {
-  color: rgb(252, 90, 90);
-  /* font-weight: bold; */
 }
