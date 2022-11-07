@@ -54,7 +54,8 @@ let init = () => {
 const calendarService = () => {
   const
     today = dayjs(),
-    chooseDays = [];
+    chooseDays = [],
+    defaultTable = JSON.parse(JSON.stringify(tableData)); //深層複製，純資料可行。
   ;
   let theDay = dayjs(),
     //let theDay = dayjs('2022-12-01');
@@ -157,6 +158,7 @@ const calendarService = () => {
 
     },
     tableMarker = () => {
+      tableData = JSON.parse(JSON.stringify(defaultTable));
       for (const key in tableData.pallet)
         tableData.pallet[key].sellCount = pallet[key].total;
 
@@ -175,8 +177,20 @@ const calendarService = () => {
       tablePrint();
     },
     tablePrint = () => {
-      const loki=document.querySelectorAll('form select').forEach(node=>{
-        console.log(node);
+      document.querySelectorAll('form select').forEach(node => {
+        const tagname = node.name;
+        const count = tableData.pallet[tagname].sellCount;
+        
+        let optionStr = '';
+        for (let i = 0; i <= count; i++) optionStr += `<option value="${i}">${i}</option>`;
+        node.innerHTML = optionStr;
+        node.disabled = !count;
+
+        const palletInfo = node.parentElement.previousElementSibling;
+        palletInfo.innerHTML = count == 0 ? '' : tableData.pallet[tagname].sellInfo;
+
+        const span = palletInfo.previousElementSibling.children.item(1).children.item(0);
+        span.textContent = count;
       });
     };
   return {
