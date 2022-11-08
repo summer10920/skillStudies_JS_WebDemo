@@ -24,25 +24,21 @@
     "count": 40,
     "aArea": {
       "total": 10,
-      "nightPrice": 800,
       "normalPrice": 1000,
       "holidayPrice": 1500
     },
     "bArea": {
       "total": 10,
-      "nightPrice": 900,
       "normalPrice": 1100,
       "holidayPrice": 1600
     },
     "cArea": {
       "total": 10,
-      "nightPrice": 1000,
       "normalPrice": 1200,
       "holidayPrice": 1700
     },
     "dArea": {
       "total": 10,
-      "nightPrice": 1500,
       "normalPrice": 2000,
       "holidayPrice": 2500
     }
@@ -78,10 +74,10 @@
     {
       "date": "2022-12-15",
       "sellout": {
-        "aArea": 4,
-        "bArea": 4,
-        "cArea": 4,
-        "dArea": 4
+        "aArea": 10,
+        "bArea": 8,
+        "cArea": 10,
+        "dArea": 10
       }
     },
     {

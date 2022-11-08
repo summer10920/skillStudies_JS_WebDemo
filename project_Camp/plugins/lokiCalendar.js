@@ -48,6 +48,19 @@ let init = () => {
       event.preventDefault();
       calendarCtrl.sub();
     }
+
+    document.querySelectorAll('form select').forEach(node => {
+      node.onchange = function () {
+        // tableData.totalPrice += tableData.pallet[node.name].sumPrice * node.value;
+        tableData.totalPrice = 0;
+        document.querySelectorAll('form select').forEach(item =>
+          tableData.totalPrice += tableData.pallet[item.name].sumPrice * item.value
+        );
+        document.querySelector('form>h3').textContent = `$${tableData.totalPrice} / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
+      }
+    });
+
+    
   })
 };
 
@@ -173,6 +186,7 @@ const calendarService = () => {
             tableData.pallet[key].sellInfo += `<div>${node.dataset.date}(${dayPrice})</div>`;
           }
         }
+        tableData[node.classList.contains('holiday') ? 'holidayCount' : 'normalCount']++;
       });
       tablePrint();
     },
@@ -180,7 +194,7 @@ const calendarService = () => {
       document.querySelectorAll('form select').forEach(node => {
         const tagname = node.name;
         const count = tableData.pallet[tagname].sellCount;
-        
+
         let optionStr = '';
         for (let i = 0; i <= count; i++) optionStr += `<option value="${i}">${i}</option>`;
         node.innerHTML = optionStr;
@@ -192,6 +206,7 @@ const calendarService = () => {
         const span = palletInfo.previousElementSibling.children.item(1).children.item(0);
         span.textContent = count;
       });
+      document.querySelector('form>h3').textContent = `$0 / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
     };
   return {
     print: () => listPrint(),
