@@ -139,3 +139,8 @@
 .calendar .selectFoot::before {
   background: #38470b;
 }
+
+.offcanvas {
+  z-index: 9999;
+  color: #333;
+}

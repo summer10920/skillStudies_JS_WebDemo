@@ -20,10 +20,10 @@ let
     nightGo: false,
     undo: true,
     pallet: {
-      aArea: { sellCount: 0, sellInfo: '', sumPrice: 0, orderCount: 0 },
-      bArea: { sellCount: 0, sellInfo: '', sumPrice: 0, orderCount: 0 },
-      cArea: { sellCount: 0, sellInfo: '', sumPrice: 0, orderCount: 0 },
-      dArea: { sellCount: 0, sellInfo: '', sumPrice: 0, orderCount: 0 }
+      aArea: { title: '河畔 × A區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      bArea: { title: '山間 × B區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      cArea: { title: '平原 × C區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      dArea: { title: '車屋 × D區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 }
     }
   };
 
@@ -53,14 +53,40 @@ let init = () => {
       node.onchange = function () {
         // tableData.totalPrice += tableData.pallet[node.name].sumPrice * node.value;
         tableData.totalPrice = 0;
-        document.querySelectorAll('form select').forEach(item =>
+        document.querySelectorAll('form select').forEach(item => {
           tableData.totalPrice += tableData.pallet[item.name].sumPrice * item.value
+          tableData.pallet[item.name].orderCount = Number(item.value);
+        }
         );
         document.querySelector('form>h3').textContent = `$${tableData.totalPrice} / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
+
       }
     });
 
-    
+    const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
+    document.querySelector('form button').onclick = (event) => {
+      liStr = '';
+      document.querySelectorAll('form select').forEach(item => {
+        if (item.value == 0) return;
+        liStr += `
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">${tableData.pallet[item.name].title} </div>
+                <div>
+                  ${tableData.pallet[item.name].sellInfo}
+                </div>
+              </div>
+              <span class="badge bg-warning rounded-pill">x <span class="fs-6">${tableData.pallet[item.name].orderCount}</span></span>
+          </li>
+        `;
+      });
+      document.querySelector('.offcanvas ol').innerHTML = liStr;
+      document.querySelector('.offcanvas .card-header').textContent = document.querySelector('form>h3').textContent;
+      document.querySelector('.offcanvas button[type="submit"]').disabled = !liStr;
+      offcanvas.show();
+    }
+
+
   })
 };
 

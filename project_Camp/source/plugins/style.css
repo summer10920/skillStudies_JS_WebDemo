@@ -160,11 +160,11 @@ section:not(#lokiSlider,#lokiLightBox) {
   height: 80px;
   object-fit: cover;
 }
-
+/* 
 #lokiLightBox{
   position: fixed;
   background: hsla(0, 0%, 100%, 0.1);
   width: 100%;
   height: 100%;
   backdrop-filter: blur(10px);
-}
+} */

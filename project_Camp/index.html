@@ -773,7 +773,7 @@
                   <th scope="row">
                     <img src="media/imgs/pallet01.jpeg">
                   </th>
-                  <td>
+                  <td name="pallet">
                     <div>河畔 × A區</div>
                     <label class="fw-light badge bg-warning">剩餘 <span class="fs-6">10</span> 組</label>
                   </td>
@@ -782,7 +782,10 @@
                     <div>2022-11-04 ($1000)</div> -->
                   </td>
                   <td>
-                    <select class="form-select form-select-sm" name="aArea">
+                    <select
+                      class="form-select form-select-sm"
+                      name="aArea"
+                    >
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -792,8 +795,8 @@
                   <th scope="row">
                     <img src="media/imgs/pallet02.jpg">
                   </th>
-                  <td>
-                    <div>山間 × B區 </div>
+                  <td name="pallet">
+                    <div>山間 × B區</div>
                     <label class="fw-light badge bg-warning">剩餘 <span class="fs-6">10</span> 組</label>
                   </td>
                   <td>
@@ -803,7 +806,10 @@
                     <div>2022-11-06 ($1000)</div> -->
                   </td>
                   <td>
-                    <select class="form-select form-select-sm" name="bArea">
+                    <select
+                      class="form-select form-select-sm"
+                      name="bArea"
+                    >
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -813,8 +819,8 @@
                   <th scope="row">
                     <img src="media/imgs/pallet03.jpg">
                   </th>
-                  <td>
-                    <div>平原 × C區 </div>
+                  <td name="pallet">
+                    <div>平原 × C區</div>
                     <label class="fw-light badge bg-warning">剩餘 <span class="fs-6">10</span> 組</label>
                   </td>
                   <td>
@@ -824,7 +830,10 @@
                     <div>2022-11-06 ($1000)</div> -->
                   </td>
                   <td>
-                    <select class="form-select form-select-sm" name="cArea">
+                    <select
+                      class="form-select form-select-sm"
+                      name="cArea"
+                    >
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -834,8 +843,8 @@
                   <th scope="row">
                     <img src="media/imgs/pallet04.jpg">
                   </th>
-                  <td>
-                    <div>車屋 × D區 </div>
+                  <td name="pallet">
+                    <div>車屋 × D區</div>
                     <label class="fw-light badge bg-warning">剩餘 <span class="fs-6">10</span> 組</label>
                   </td>
                   <td>
@@ -845,7 +854,10 @@
                     <div>2022-11-06 ($1000)</div> -->
                   </td>
                   <td>
-                    <select class="form-select form-select-sm" name="dArea">
+                    <select
+                      class="form-select form-select-sm"
+                      name="dArea"
+                    >
                       <option value="0">0</option>
                       <option value="1">1</option>
                     </select>
@@ -919,10 +931,104 @@
   </footer>
   <script src="plugins/custom.js"></script>
   <script src="plugins/lokiCalendar.js"></script>
-  <section
+  <!-- <section
     id="lokiLightBox"
     class="bg-black"
-  > hello </section>
+  > hello </section> -->
+  <section
+    class="offcanvas offcanvas-start"
+    data-bs-backdrop="static"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">訂位確認</h5>
+      <button
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+      ></button>
+    </div>
+    <form class="offcanvas-body">
+      <div class="card mb-3">
+        <ol class="list-group list-group-flush list-group-numbered">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">河畔 × A區 </div>
+              <div>
+                <div>2022-12-06(1000)</div>
+                <div>2022-12-07(1000)</div>
+              </div>
+            </div>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">山間 × B區 </div>
+              <div>
+                <div>2022-12-06(1000)</div>
+                <div>2022-12-07(1000)</div>
+              </div>
+            </div>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">平原 × C區 </div>
+              <div>
+                <div>2022-12-06(1000)</div>
+                <div>2022-12-07(1000)</div>
+              </div>
+            </div>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+          </li>
+        </ol>
+        <div class="card-header h5">
+          $12000 / 0晚平日，2晚假日
+          <h5 class="card-title">$12000 / 0晚平日，2晚假日</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label
+              for="lokiUser"
+              class="form-label"
+            >訪客姓名</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="lokiUser"
+            >
+          </div>
+          <div class="mb-3">
+            <label
+              for="lokiPhone"
+              class="form-label"
+            >聯絡手機</label>
+            <input
+              type="phone"
+              class="form-control form-control-sm"
+              id="lokiPhone"
+            >
+          </div>
+          <div class="mb-3">
+            <label
+              for="lokiMail"
+              class="form-label"
+            >Email 電子信箱</label>
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              id="lokiMail"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          type="submit"
+          class="btn btn-dark w-100"
+        >提交訂單</button>
+        <small>此預約系統僅預約功能，並不會對您進行收費</small>
+      </div>
+    </form>
+  </section>
 </body>
 
 </html>
