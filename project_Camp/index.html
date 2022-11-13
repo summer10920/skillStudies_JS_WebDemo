@@ -946,7 +946,10 @@
         data-bs-dismiss="offcanvas"
       ></button>
     </div>
-    <form class="offcanvas-body">
+    <form
+      class="offcanvas-body  needs-validation was-validated"
+      novalidate
+    >
       <div class="card mb-3">
         <ol class="list-group list-group-flush list-group-numbered">
           <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -980,9 +983,7 @@
             <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
           </li>
         </ol>
-        <div class="card-header h5">
-          $12000 / 0晚平日，2晚假日
-          <h5 class="card-title">$12000 / 0晚平日，2晚假日</h5>
+        <div class="card-header h5"> $12000 / 0晚平日，2晚假日 <h5 class="card-title">$12000 / 0晚平日，2晚假日</h5>
         </div>
         <div class="card-body">
           <div class="mb-3">
@@ -994,6 +995,7 @@
               type="text"
               class="form-control form-control-sm"
               id="lokiUser"
+              required
             >
           </div>
           <div class="mb-3">
@@ -1005,6 +1007,7 @@
               type="phone"
               class="form-control form-control-sm"
               id="lokiPhone"
+              required
             >
           </div>
           <div class="mb-3">
@@ -1016,6 +1019,7 @@
               type="email"
               class="form-control form-control-sm"
               id="lokiMail"
+              required
             >
           </div>
         </div>
