@@ -18,7 +18,6 @@ let
     normalCount: 0,
     holidayCount: 0,
     nightGo: false,
-    undo: true,
     pallet: {
       aArea: { title: '河畔 × A區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
       bArea: { title: '山間 × B區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
@@ -64,7 +63,7 @@ let init = () => {
     });
 
     const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
-    document.querySelector('form button').onclick = (event) => {
+    document.querySelector('#selectPallet button').onclick = (event) => {
       liStr = '';
       document.querySelectorAll('form select').forEach(item => {
         if (item.value == 0) return;
@@ -76,7 +75,7 @@ let init = () => {
                   ${tableData.pallet[item.name].sellInfo}
                 </div>
               </div>
-              <span class="badge bg-warning rounded-pill">x <span class="fs-6">${tableData.pallet[item.name].orderCount}</span></span>
+              <span class="badge bg-warning rounded-pill">x <span class="fs-6">${tableData.pallet[item.name].orderCount}</span> 帳</span>
           </li>
         `;
       });
@@ -86,8 +85,37 @@ let init = () => {
       offcanvas.show();
     }
 
+    document.forms.orderForm.onsubmit = function (event) {
+      event.preventDefault();
+      event.stopPropagation();
 
-  })
+      const sendData = new FormData(this);
+
+      const selectDateAry = [...document.querySelectorAll('li.selectHead, li.selectConnect')].map(e => e.dataset.date);
+      sendData.append('selectDate', JSON.stringify(selectDateAry));
+
+      const sellout = {};
+      Object.keys(tableData.pallet).forEach(key => sellout[key] = tableData.pallet[key].orderCount);
+      sendData.append('sellout', JSON.stringify(sellout));
+
+      console.log(tableData);
+      if (!this.checkValidity()) this.classList.add('was-validated');
+      else {
+        // fetch post
+        fetch('order.php', {
+          method: 'POST',
+          body: sendData,
+          // headers: { 'Content-Type': 'multipart/form-data' }
+        })
+          .then((res) => res.json()).then((data) => {
+            console.log(data);
+          })
+      }
+
+
+    };
+
+  });
 };
 
 const calendarService = () => {
@@ -201,7 +229,7 @@ const calendarService = () => {
       for (const key in tableData.pallet)
         tableData.pallet[key].sellCount = pallet[key].total;
 
-      const aa = document.querySelectorAll('li.selectHead, li.selectConnect').forEach(node => { //one node one day
+      document.querySelectorAll('li.selectHead, li.selectConnect').forEach(node => { //one node one day
         for (const key in tableData.pallet) {
           const hasOrder = booked.find(item => item.date == node.dataset.date);
           if (hasOrder)

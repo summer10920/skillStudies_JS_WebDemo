@@ -757,7 +757,10 @@
               </div>
             </div>
           </div>
-          <form class="col-lg-8">
+          <form
+            id="selectPallet"
+            class="col-lg-8"
+          >
             <h3>$0 / 0晚平日，0晚假日</h3>
             <table class="table table-striped">
               <thead class="table-dark">
@@ -947,7 +950,8 @@
       ></button>
     </div>
     <form
-      class="offcanvas-body  needs-validation was-validated"
+      id="orderForm"
+      class="offcanvas-body  needs-validation"
       novalidate
     >
       <div class="card mb-3">
@@ -960,7 +964,7 @@
                 <div>2022-12-07(1000)</div>
               </div>
             </div>
-            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span>帳</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
@@ -970,7 +974,7 @@
                 <div>2022-12-07(1000)</div>
               </div>
             </div>
-            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span>帳</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
@@ -980,7 +984,7 @@
                 <div>2022-12-07(1000)</div>
               </div>
             </div>
-            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span></span>
+            <span class="badge bg-warning rounded-pill">x <span class="fs-6">2</span>帳</span>
           </li>
         </ol>
         <div class="card-header h5"> $12000 / 0晚平日，2晚假日 <h5 class="card-title">$12000 / 0晚平日，2晚假日</h5>
@@ -994,6 +998,7 @@
             <input
               type="text"
               class="form-control form-control-sm"
+              name="userName"
               id="lokiUser"
               required
             >
@@ -1007,6 +1012,7 @@
               type="phone"
               class="form-control form-control-sm"
               id="lokiPhone"
+              name="userPhone"
               required
             >
           </div>
@@ -1019,6 +1025,7 @@
               type="email"
               class="form-control form-control-sm"
               id="lokiMail"
+              name="userMail"
               required
             >
           </div>
