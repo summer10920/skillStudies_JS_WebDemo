@@ -102,13 +102,17 @@ let init = () => {
       if (!this.checkValidity()) this.classList.add('was-validated');
       else {
         // fetch post
-        fetch('order.php', {
+        fetch('https://jsonplaceholder.typicode.com/posts', {
           method: 'POST',
           body: sendData,
           // headers: { 'Content-Type': 'multipart/form-data' }
         })
           .then((res) => res.json()).then((data) => {
-            console.log(data);
+            if(data){
+              alert('感謝您的預約！期待見面');
+              document.location.href='/';
+
+            }
           })
       }
 
