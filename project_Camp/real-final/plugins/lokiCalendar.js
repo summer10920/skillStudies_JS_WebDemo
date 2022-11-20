@@ -108,9 +108,9 @@ let init = () => {
           // headers: { 'Content-Type': 'multipart/form-data' }
         })
           .then((res) => res.json()).then((data) => {
-            if(data){
+            if (data) {
               alert('感謝您的預約！期待見面');
-              document.location.href='/';
+              document.location.href = '/';
 
             }
           })
