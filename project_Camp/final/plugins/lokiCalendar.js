@@ -59,7 +59,12 @@ const calendarService = () => {
         else {
           const dateStr = obj.thisDate.date(i).format('YYYY-MM-DD');
           if ((i + firstDay) % 7 < 2 || nationalHoliday.includes(dateStr)) classStr += ' holiday'; //是否周末或國定日
+
+          const checkDay = booked.find(item => item.date == dateStr);
+          if (checkDay && !(pallet.count - Object.values(checkDay.sellout).reduce((preVal, num) => preVal + num, 0))) //滿帳
+            classStr += ' fullDay';
           
+            classStr += ' selectDay';
         }
         obj.listBox += `<li class="${classStr}">${i}</li>`;
       }
