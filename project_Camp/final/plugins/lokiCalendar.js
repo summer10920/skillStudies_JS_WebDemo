@@ -2,6 +2,7 @@
 dayjs.locale('zh-tw');
 dayjs.extend(dayjs_plugin_localeData);
 dayjs.extend(dayjs_plugin_isSameOrBefore); //宣告
+dayjs.extend(dayjs_plugin_isBetween); //宣告
 
 //全域變數宣告區
 let
@@ -121,16 +122,30 @@ const calendarService = () => {
           chooseDays[1].classList.add('selectHead');
           [chooseDays[0], chooseDays[1]] = [chooseDays[1], chooseDays[0]];
         } else chooseDays[1].classList.add('selectFoot');
+
+        //add selectConnect between head and foot
+        document.querySelectorAll('li.selectDay').forEach(item => {
+          if (dayjs(item.dataset.date).isBetween(chooseDays[0].dataset.date, chooseDays[1].dataset.date))
+            item.classList.add('selectConnect');
+        });
+
+        tableMaker();
+
       } else { //[item,item] => third click
+        document.querySelectorAll('li.selectConnect').forEach(
+          item => item.classList.remove('selectConnect')
+        );
 
         chooseDays[0].classList.remove('selectHead');
         chooseDays[1].classList.remove('selectFoot');
         chooseDays[1] = null;
 
-        //這裡的邏輯可以跟[null,null]合併為前綴特別處理
         chooseDays[0] = item;
         chooseDays[0].classList.add('selectHead');
       }
+    },
+    tableMaker = () => {
+      console.log(chooseDays);
     };
 
   return {
@@ -144,6 +159,7 @@ const calendarService = () => {
       listPrint();
     },
     choose: item => {
+      if (item.classList.contains('selectHead') && !chooseDays[1]) return;
       chooseList(item); //轉提供
     }
   }
