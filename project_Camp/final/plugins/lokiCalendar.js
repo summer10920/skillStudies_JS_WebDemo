@@ -51,6 +51,7 @@ const calendarService = () => {
     };
 
   const
+    chooseDays = [null, null], // 初始已選陣列
     changeMonth = count => {
       theDay = theDay.add(count, 'M');
       objL = {  //obj回到乾淨狀態下，使得listMaker可以重新賦予
@@ -107,7 +108,29 @@ const calendarService = () => {
       })
     },
     chooseList = item => {
-      console.log(item);
+      // console.log(item);
+      if (!chooseDays[0] && !chooseDays[1]) { //[null,null] => first click
+        chooseDays[0] = item; //存入
+        chooseDays[0].classList.add('selectHead');
+      } else if (chooseDays[0] && !chooseDays[1]) {  //[item,null]=> second click
+        chooseDays[1] = item; //存入
+
+        const foot2head = dayjs(item.dataset.date).isSameOrBefore(dayjs(chooseDays[0].dataset.date)); //目前item是否早於先前點的日子，代表foot->head
+        if (foot2head) {
+          chooseDays[0].classList.replace('selectHead', 'selectFoot');
+          chooseDays[1].classList.add('selectHead');
+          [chooseDays[0], chooseDays[1]] = [chooseDays[1], chooseDays[0]];
+        } else chooseDays[1].classList.add('selectFoot');
+      } else { //[item,item] => third click
+
+        chooseDays[0].classList.remove('selectHead');
+        chooseDays[1].classList.remove('selectFoot');
+        chooseDays[1] = null;
+
+        //這裡的邏輯可以跟[null,null]合併為前綴特別處理
+        chooseDays[0] = item;
+        chooseDays[0].classList.add('selectHead');
+      }
     };
 
   return {
