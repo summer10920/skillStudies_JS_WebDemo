@@ -10,8 +10,18 @@ let
   nationalHoliday = [],
   booked = [],
   pallet = {},
-  calendarCtrl = null //初始日曆物件
-  ;
+  calendarCtrl = null,
+  tableData = { //初始的表格資料
+    totalPrice: 0, // 總價
+    normalCount: 0, // 平日入住數
+    holidayCount: 0, // 平日入住數
+    pallet: { //營位資料 => 名稱、可賣數量、營位資訊、小計、訂購數
+      aArea: { title: '河畔 × A區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      bArea: { title: '山間 × B區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      cArea: { title: '平原 × C區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 },
+      dArea: { title: '車屋 × D區', sellCount: 0, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 }
+    }
+  };
 
 //初次執行項目
 const init = () => {
@@ -29,6 +39,80 @@ const init = () => {
       event.preventDefault();
       calendarCtrl.sub();
     }
+
+    calendarCtrl.tableRefresh();
+
+
+    const allSelect = document.querySelectorAll('form select'); //找到所有select
+    allSelect.forEach(node => { //跑批次
+      node.onchange = function () { //設定event，只要發生change就做以下事情
+        tableData.totalPrice = 0; //總價歸0重新計算
+        allSelect.forEach(item => { //對所有的select value與小計相乘疊加回總價去
+          tableData.totalPrice += tableData.pallet[item.name].sumPrice * item.value
+          tableData.pallet[item.name].orderCount = Number(item.value);//同時記住買了幾個營位數
+        }
+        );
+
+        // 跑完迴圈後，將總價輸出到畫面上
+        document.querySelector('form>h3').textContent = `$${tableData.totalPrice} / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
+      }
+    });
+
+    const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
+    document.querySelector('#selectPallet button').onclick = () => {
+      liStr = '';
+      for (const key in tableData.pallet) {
+        console.log(key);
+        if (tableData.pallet[key].orderCount == 0) continue;
+        liStr += `
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">${tableData.pallet[key].title} </div>
+                <div>
+                  ${tableData.pallet[key].sellInfo}
+                </div>
+              </div>
+              <span class="badge bg-warning rounded-pill">x <span class="fs-6">${tableData.pallet[key].orderCount}</span> 帳</span>
+          </li>
+        `;
+      }
+
+      document.querySelector('.offcanvas ol').innerHTML = liStr;
+      document.querySelector('.offcanvas .card-header').textContent = document.querySelector('form>h3').textContent;
+      document.querySelector('.offcanvas button[type="submit"]').disabled = !liStr;
+      offcanvas.show();
+    }
+
+    document.forms.orderForm.onsubmit = function (event) {
+      event.preventDefault();
+
+      const sendData = new FormData(this);
+      const selectDateAry = [...document.querySelectorAll('li.selectHead, li.selectConnect')].map(e => e.dataset.date);
+      sendData.append('selectDate', JSON.stringify(selectDateAry));
+
+      const sellout = {};
+      Object.keys(tableData.pallet).forEach(key => sellout[key] = tableData.pallet[key].orderCount);
+      sendData.append('sellout', JSON.stringify(sellout));
+
+      // for (var pair of sendData.entries())
+      //   console.log(pair[0] + ', ' + pair[1]);
+
+      if (!this.checkValidity()) this.classList.add('was-validated');
+      else {
+        // fetch post
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          body: sendData,
+          // headers: { 'Content-Type': 'multipart/form-data' }
+        })
+          .then((res) => res.json()).then((data) => {
+            if (data) {
+              alert('感謝您的預約！期待見面');
+              // document.location.href = '/';
+            }
+          })
+      }
+    };
   });
 }
 
@@ -53,6 +137,7 @@ const calendarService = () => {
 
   const
     chooseDays = [null, null], // 初始已選陣列
+    defaultTableDataStr = JSON.stringify(tableData), //深層複製，純資料可行。
     changeMonth = count => {
       theDay = theDay.add(count, 'M');
       objL = {  //obj回到乾淨狀態下，使得listMaker可以重新賦予
@@ -145,7 +230,54 @@ const calendarService = () => {
       }
     },
     tableMaker = () => {
-      console.log(chooseDays);
+      tableData = JSON.parse(defaultTableDataStr); //將字串轉為物件存入，此時物件會整個翻新包含記憶體位置也會與先前的不同
+      for (const key in tableData.pallet) //取得 key=[a ~ d]Area
+        tableData.pallet[key].sellCount = pallet[key].total; //將數量改回原總數，隨減去已賣數，剩餘就是可售數
+
+      document.querySelectorAll('li.selectHead, li.selectConnect').forEach(node => { //尋找欲入住當晚的日子，不含離營日
+
+        for (const key in tableData.pallet) { //每一個入住日都要檢查該日期是否出現在後端給的booked內
+
+          const hasOrder = booked.find(item => item.date == node.dataset.date);
+          if (hasOrder)
+            //N天只要找最低可售數就好，因此原總數減去booked的某日已售，就是sellCount剩餘數，而與目前剩餘數取小再回存sellCount。
+            tableData.pallet[key].sellCount = Math.min(tableData.pallet[key].sellCount, pallet[key].total - hasOrder.sellout[key]);
+
+          //如果可售數不是0，我們才有要顯示更多細節可以賣。只要沒房就不需要賣給客人了(顯示販售資訊)。
+          if (tableData.pallet[key].sellCount) { //該日該營位若可售
+
+            // 確認當日哪種日子價格，小計到tableData，並塞入販售價格資訊。
+            const dayPrice = pallet[key][node.classList.contains('holiday') ? 'holidayPrice' : 'normalPrice'];
+            tableData.pallet[key].sumPrice += dayPrice;
+            tableData.pallet[key].sellInfo += `<div>${node.dataset.date}(${dayPrice})</div>`;
+          }
+        }
+
+        tableData[node.classList.contains('holiday') ? 'holidayCount' : 'normalCount']++;
+      });
+      tablePrint();
+    },
+    tablePrint = () => {
+      document.querySelectorAll('form select').forEach(node => {
+        const palletName = node.name; //ex: aArea
+
+        //td>select>option 可賣數量
+        const count = tableData.pallet[palletName].sellCount; //option 數量
+        let optionStr = '';
+        for (let i = 0; i <= count; i++) optionStr += `<option value="${i}">${i}</option>`;
+        node.innerHTML = optionStr;
+        node.disabled = !count; //如果為0，禁用此
+
+        //td>div 預約日金 
+        const palletInfo = node.parentElement.previousElementSibling; //select=>上層=>前一格=td
+        palletInfo.innerHTML = count == 0 ? '' : tableData.pallet[palletName].sellInfo; // 如果是0，div也可不要輸出了
+
+        //td>label>剩餘span組 
+        palletInfo.previousElementSibling.children.item(1).children.item(0).textContent = count;
+      });
+
+      //h3 文字
+      document.querySelector('form>h3').textContent = `$0 / ${tableData.normalCount}晚平日，${tableData.holidayCount}晚假日`;
     };
 
   return {
@@ -161,6 +293,7 @@ const calendarService = () => {
     choose: item => {
       if (item.classList.contains('selectHead') && !chooseDays[1]) return;
       chooseList(item); //轉提供
-    }
+    },
+    tableRefresh: () => tablePrint()
   }
 }
