@@ -51,6 +51,12 @@
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/localeData.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/isSameOrBefore.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/isBetween.js"></script>
+  <!-- aos -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/aos@next/dist/aos.css"
+  />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <!-- custom -->
   <link
     rel="stylesheet"
@@ -70,7 +76,7 @@
   data-bs-spy="scroll"
   data-bs-target="#lokiMenu"
 >
-  <nav class="navbar navbar-expand-lg text-bg-dark navbar-dark position-fixed top-0 w-100">
+  <nav class="navbar navbar-expand-lg text-bg-secondary navbar-dark position-fixed top-0 w-100">
     <div class="container">
       <a
         class="navbar-brand"
@@ -207,24 +213,35 @@
       <img
         class="col img-fluid"
         src="media/imgs/palletHeader01.jpg"
+        data-aos="flip-up"
       >
       <img
         class="col img-fluid"
         src="media/imgs/palletHeader02.jpg"
+        data-aos="flip-down"
+        data-aos-delay="500"
       >
       <img
         class="col img-fluid"
         src="media/imgs/palletHeader03.jpg"
+        data-aos="flip-left"
+        data-aos-delay="300"
       >
       <img
         class="col img-fluid"
         src="media/imgs/palletHeader04.jpg"
+        data-aos="flip-right"
+        data-aos-delay="900"
       >
     </div>
     <header class="h2 my-5 border-start border-5 border-secondary ps-3">營位介紹</header>
     <article class="row row-cols-1 row-cols-md-2 flex-row-reverse g-5 gx-md-5 gy-md-0 overflow-hidden">
       <div class="col">
-        <div class="card text-bg-dark overflow-hidden border-0 shadow">
+        <div
+          class="card text-bg-dark overflow-hidden border-0 shadow"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <img
             src="media/imgs/pallet01.jpeg"
             class="card-img"
@@ -247,7 +264,11 @@
         </div>
       </div>
       <div class="col">
-        <div class="card text-bg-dark overflow-hidden border-0 shadow">
+        <div
+          class="card text-bg-dark overflow-hidden border-0 shadow"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        >
           <img
             src="media/imgs/pallet02.jpg"
             class="card-img"
@@ -270,7 +291,11 @@
         </div>
       </div>
       <div class="col">
-        <div class="card text-bg-dark overflow-hidden border-0 shadow">
+        <div
+          class="card text-bg-dark overflow-hidden border-0 shadow"
+          data-aos="fade-left"
+          data-aos-duration="1000"
+        >
           <img
             src="media/imgs/pallet03.jpg"
             class="card-img"
@@ -291,7 +316,11 @@
         </div>
       </div>
       <div class="col">
-        <div class="card text-bg-dark overflow-hidden border-0 shadow">
+        <div
+          class="card text-bg-dark overflow-hidden border-0 shadow"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+        >
           <img
             src="media/imgs/pallet04.jpg"
             class="card-img"
