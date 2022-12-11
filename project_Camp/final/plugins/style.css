@@ -161,3 +161,15 @@ nav.navbar {
 nav.navbar.init {
   background-color: #0003 !important;
 }
+
+/****************Cookie Agree*****/
+#lokiCookie {
+  padding: 30px 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1b2a4dc7;
+  display: none;
+  z-index: 99999;
+}
