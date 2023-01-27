@@ -248,7 +248,7 @@ const calendarService = () => {
 
             // 確認當日哪種日子價格，小計到tableData，並塞入販售價格資訊。
             const dayPrice = pallet[key][node.classList.contains('holiday') ? 'holidayPrice' : 'normalPrice'];
-            tableData.pallet[key].sumPrice += dayPrice;
+            tableData.pallet[key].sumPrice += Number(dayPrice);
             tableData.pallet[key].sellInfo += `<div>${node.dataset.date}(${dayPrice})</div>`;
           }
         }
