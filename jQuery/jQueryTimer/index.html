@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@669&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="time">
+    <div class="digi">
+      <div class="add"></div>
+      <div data-time="Hours">04</div>
+      <div class="sub"></div>
+    </div>
+    <div>:</div>
+    <div class="digi">
+      <div class="add"></div>
+      <div data-time="Minutes">00</div>
+      <div class="sub"></div>
+    </div>
+    <div>:</div>
+    <div class="digi">
+      <div class="add"></div>
+      <div data-time="Seconds">00</div>
+      <div class="sub"></div>
+    </div>
+    <div>:</div>
+    <div class="digi">
+      <div class="add"></div>
+      <div data-time="Milliseconds">00</div>
+      <div class="sub"></div>
+    </div>
+  </div>
+  <div class="control">
+    <div class="play"></div>
+    <div class="reset"></div>
+  </div>
+
+
+  <script>
+    let run = null;
+    let loki = {
+      flag: true,
+      now: new Date(),
+      final: new Date(),
+      display: () => {
+        let betweenTime = loki.final.getTime() - loki.now.getTime();
+        $("[data-time=Hours]").text(loki.zero(Math.floor(betweenTime / 1000 / 60 / 60)));
+        $("[data-time=Minutes]").text(loki.zero(Math.floor(betweenTime / 1000 / 60 % 60)));
+        $("[data-time=Seconds]").text(loki.zero(Math.floor(betweenTime / 1000 % 60)));
+        $("[data-time=Milliseconds]").text(loki.zero(Math.floor(betweenTime % 1000 / 10)));
+      },
+      zero: num => {
+        return (num < 10) ? "0" + num : num;
+      },
+      setFinal: () => {
+        loki.now = new Date();
+        loki.final.setHours(loki.now.getHours() + parseInt($("[data-time=Hours]").text()));
+        loki.final.setMinutes(loki.now.getMinutes() + parseInt($("[data-time=Minutes]").text()));
+        loki.final.setSeconds(loki.now.getSeconds() + parseInt($("[data-time=Seconds]").text()));
+        loki.final.setMilliseconds(loki.now.getMilliseconds() + parseInt($("[data-time=Milliseconds]").text()));
+        loki.sendCook();
+      },
+      getFinal: (e) => {
+        loki.final.setTime(e);
+        loki.display();
+        loki.run();
+      },
+      sendCook: () => {
+        document.cookie = "finaltime=" + loki.final.getTime() + ";expires=" + loki.final.toUTCString();
+      },
+      run: (e) => {
+        if (loki.flag) {
+          loki.setFinal();
+          clearInterval(run);
+          run = setInterval(() => {
+            loki.now = new Date();
+            if (loki.now.getTime() > loki.final.getTime()) loki.stop(e);
+            else loki.display();
+          }, 10);
+          $(e).toggleClass("stop");
+          $(".add,.sub").hide(1000);
+          loki.flag = 0;
+        }
+        else loki.stop(e);
+      },
+      stop: e => {
+        clearInterval(run);
+        $(e).toggleClass("stop");
+        $(".add,.sub").show(1000);
+        loki.flag = true;
+      },
+      findCook: e => {
+        let ckary = document.cookie.split("; "); //根據關鍵字將字串割除分開為 array　，然後轉JSON
+        let objCookie = new Object(); //產生空物件
+        ckary.forEach(e => {
+          let kv = e.split("=");
+          objCookie[kv[0]] = kv[1];
+        });
+        if (e in objCookie) return objCookie[e]; //我們要回傳字串且不可使用 objCookie.name
+        else return false;
+      },
+      add: e => {
+        clearInterval(run);
+        switch ($(e).next().attr("data-time")) {
+          case "Hours":
+            loki.final.setHours(loki.final.getHours() + 1);
+            break;
+          case "Minutes":
+            loki.final.setMinutes(loki.final.getMinutes() + 1);
+            break;
+          case "Seconds":
+            loki.final.setSeconds(loki.final.getSeconds() + 1);
+            break;
+          case "Milliseconds":
+            loki.final.setMilliseconds(loki.final.getMilliseconds() + 10);
+            break;
+        }
+        loki.display();
+        loki.sendCook();
+      },
+      sub: e => {
+        clearInterval(run);
+        switch ($(e).prev().attr("data-time")) {
+          case "Hours":
+            if (parseInt($("[data-time=Hours]").text()))
+              loki.final.setHours(loki.final.getHours() - 1);
+            break;
+          case "Minutes":
+            if (parseInt($("[data-time=Hours]").text()) + parseInt($("[data-time=Minutes]").text()))
+              loki.final.setMinutes(loki.final.getMinutes() - 1);
+            break;
+          case "Seconds":
+            if (parseInt($("[data-time=Hours]").text()) + parseInt($("[data-time=Minutes]").text()) + parseInt($("[data-time=Seconds]").text()))
+              loki.final.setSeconds(loki.final.getSeconds() - 1);
+            break;
+          case "Milliseconds":
+            if (parseInt($("[data-time=Hours]").text()) + parseInt($("[data-time=Minutes]").text()) + parseInt($("[data-time=Seconds]").text()) + parseInt($("[data-time=Milliseconds]").text()))
+              loki.final.setMilliseconds(loki.final.getMilliseconds() - 10);
+            break;
+        }
+        loki.display();
+        loki.sendCook();
+      },
+      reset: () => {
+        $("[data-time=Hours]").text(loki.zero(4));
+        $("[data-time=Minutes]").text(loki.zero(0));
+        $("[data-time=Seconds]").text(loki.zero(0));
+        $("[data-time=Milliseconds]").text(loki.zero(0));
+        loki.setFinal();
+      }
+    }
+
+    let findTime = loki.findCook("finaltime");
+    if (!findTime) {
+      loki.setFinal();
+      loki.run();
+    } else loki.getFinal(findTime);
+    $(".add").click(function () { loki.add(this) });
+    $(".add").mousedown(function () {
+      let e = this;
+      loki.push = setInterval(() => { loki.add(e) }, 300);
+    });
+    $(".add").mouseup(function () { clearInterval(loki.push); });
+    $(".sub").click(function () { loki.sub(this) });
+    $(".sub").mousedown(function () {
+      let e = this;
+      loki.push = setInterval(() => { loki.sub(e) }, 300);
+    });
+    $(".sub").mouseup(function () { clearInterval(loki.push); });
+
+    $(".control>.play").click(function () { loki.run($(this).parent()) });
+    $(".control>.reset").click(function () { loki.reset(); });
+    $(window).on("beforeunload", () => { loki.setFinal(); });
+  </script>
+</body>
+
+</html>
