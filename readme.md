@@ -21,4 +21,4 @@
 [https://summer10920.github.io/studies_TeachDemo_JSJQ/vanillaJS/whackMole/](https://summer10920.github.io/studies_TeachDemo_JSJQ/vanillaJS/whackMole/)
 
 ## JQuery 練習主題 - 計時器
-[https://summer10920.github.io/studies_TeachDemo_JSJQ/jQueryTimer/](https://summer10920.github.io/studies_TeachDemo_JSJQ/jQueryTimer/)
+[https://summer10920.github.io/studies_TeachDemo_JSJQ/jQuery/timer/](https://summer10920.github.io/studies_TeachDemo_JSJQ/jQuery/timer/)
